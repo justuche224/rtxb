@@ -46,11 +46,15 @@ export function LoginForm({
       },
       {
         onSuccess: () => {
-          toast.success("Login successful");
+          toast.success("Login successful", {
+            description: "Redirecting to dashboard...",
+          });
           router.push("/dashboard");
         },
         onError: (error) => {
-          toast.error(error.error.message);
+          toast.error("Login failed", {
+            description: error.error.message,
+          });
         },
       }
     );

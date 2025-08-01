@@ -1,4 +1,12 @@
-import { pgTable, text, timestamp, boolean } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  timestamp,
+  boolean,
+  decimal,
+  pgEnum,
+} from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -18,6 +26,21 @@ export const user = pgTable("user", {
   banned: boolean("banned"),
   banReason: text("ban_reason"),
   banExpires: timestamp("ban_expires"),
+});
+
+export const accountInfo = pgTable("account_info", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .unique()
+    .references(() => user.id, { onDelete: "cascade" }),
+  accountNumber: text("account_number").notNull().unique(),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .notNull(),
 });
 
 export const session = pgTable("session", {
@@ -64,3 +87,98 @@ export const verification = pgTable("verification", {
     () => /* @__PURE__ */ new Date()
   ),
 });
+
+export const transactionTypeEnum = pgEnum("transaction_type", [
+  "transfer_in",
+  "transfer_out",
+  "received",
+  "deposit",
+  "withdrawal",
+]);
+
+export const transactionStatusEnum = pgEnum("transaction_status", [
+  "pending",
+  "success",
+  "failed",
+  "refunded",
+  "cancelled",
+]);
+
+export const balance = pgTable("balance", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  amount: decimal("amount", { precision: 19, scale: 4 })
+    .$defaultFn(() => "0.0000")
+    .notNull(),
+  currency: text("currency")
+    .$defaultFn(() => "USD")
+    .notNull(),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
+export const transaction = pgTable("transaction", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  senderId: text("sender_id").references(() => user.id, {
+    onDelete: "set null",
+  }),
+  type: transactionTypeEnum("type").notNull(),
+  amount: decimal("amount", { precision: 19, scale: 4 }).notNull(),
+  currency: text("currency")
+    .$defaultFn(() => "USD")
+    .notNull(),
+  status: transactionStatusEnum("status")
+    .$defaultFn(() => "pending")
+    .notNull(),
+  description: text("description"),
+  reference: text("reference"),
+  externalReference: text("external_reference"),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .notNull(),
+});
+
+export const userRelations = relations(user, ({ one, many }) => ({
+  accountInfo: one(accountInfo),
+  balance: one(balance),
+  transactions: many(transaction),
+  sentTransactions: many(transaction, { relationName: "sender" }),
+}));
+
+export const accountInfoRelations = relations(accountInfo, ({ one }) => ({
+  user: one(user, {
+    fields: [accountInfo.userId],
+    references: [user.id],
+  }),
+}));
+
+export const balanceRelations = relations(balance, ({ one }) => ({
+  user: one(user, {
+    fields: [balance.userId],
+    references: [user.id],
+  }),
+}));
+
+export const transactionRelations = relations(transaction, ({ one }) => ({
+  user: one(user, {
+    fields: [transaction.userId],
+    references: [user.id],
+  }),
+  sender: one(user, {
+    fields: [transaction.senderId],
+    references: [user.id],
+    relationName: "sender",
+  }),
+}));
