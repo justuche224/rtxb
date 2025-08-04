@@ -106,7 +106,7 @@ const Page = () => {
     },
     {
       icon: <Star className="h-12 w-12 text-primary" />,
-      title: "About Blue",
+      title: "About Finova",
       description: "Learn more about our commitment to excellence",
     },
   ];
@@ -125,7 +125,7 @@ const Page = () => {
               <div className="h-8 w-8 bg-white rounded flex items-center justify-center">
                 <Shield className="h-5 w-5 text-primary" />
               </div>
-              <span className="text-xl font-bold">Blue Horizon Finance</span>
+              <span className="text-xl font-bold">Finova Bright Bank</span>
             </div>
             <nav className="hidden md:flex items-center space-x-6">
               <a href="#" className="hover:text-primary-foreground/80">
@@ -152,9 +152,7 @@ const Page = () => {
             </nav>
             <div className="flex items-center space-x-2">
               <Button asChild variant="secondary" size="sm">
-                <Link href="/login">
-                  LOGIN
-                </Link>
+                <Link href="/login">LOGIN</Link>
               </Button>
               {/* <Button
                 variant="outline"
@@ -188,7 +186,7 @@ const Page = () => {
               className="text-4xl md:text-6xl font-bold mb-6"
               variants={fadeInUp}
             >
-              Blue Horizon Finance
+              Finova Bright Bank
             </motion.h1>
             <motion.p
               className="text-xl md:text-2xl mb-8 opacity-90"
@@ -209,9 +207,7 @@ const Page = () => {
                   size="lg"
                   className="bg-white text-primary hover:bg-white/90"
                 >
-                  <Link href="/login">
-                    JOIN NOW
-                  </Link>
+                  <Link href="/login">JOIN NOW</Link>
                 </Button>
               </motion.div>
               <motion.div
@@ -223,9 +219,7 @@ const Page = () => {
                   variant="outline"
                   className="border-white text-primary hover:bg-white hover:text-primary"
                 >
-                  <Link href="/login">
-                    LEARN MORE
-                  </Link>
+                  <Link href="/login">LEARN MORE</Link>
                 </Button>
               </motion.div>
             </motion.div>
@@ -481,7 +475,7 @@ const Page = () => {
               {
                 gradient: "from-blue-500 to-blue-700",
                 image: "1116302.jpg",
-                title: "Blue Horizon Secured Credit Card",
+                title: "Finova Bright Secured Credit Card",
                 category: "CREDIT CARDS",
                 description:
                   "Build credit responsibly with our secured credit card designed to help you establish a positive credit history.",
@@ -492,7 +486,7 @@ const Page = () => {
                 title: "Building Stronger Communities",
                 category: "COMMUNITY",
                 description:
-                  "Discover how Blue Horizon Finance is committed to strengthening communities through financial education and support.",
+                  "Discover how Finova Bright Bank is committed to strengthening communities through financial education and support.",
               },
             ].map((item, index) => (
               <motion.div
@@ -610,7 +604,7 @@ const Page = () => {
                 Building Strength Together
               </h3>
               <p className="text-sm opacity-90 mb-6">
-                Blue Horizon exists to build member value when they might
+                Finova Bright exists to build member value when they might
                 discover some value that are important to their goals. Whether
                 building financial security or helping more achieve a lifestyle
                 of generosity—we&apos;re here to help advance what&apos;s
@@ -619,7 +613,7 @@ const Page = () => {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">About Blue</h4>
+              <h4 className="font-semibold mb-4">About Finova</h4>
               <ul className="space-y-2 text-sm">
                 <li>
                   <a href="#" className="hover:underline">
@@ -690,10 +684,10 @@ const Page = () => {
               <div className="mt-6">
                 <div className="flex items-center space-x-2 mb-2">
                   <Shield className="h-6 w-6" />
-                  <span className="font-bold">Blue Horizon</span>
+                  <span className="font-bold">Finova Bright</span>
                 </div>
                 <p className="text-xs opacity-75">
-                  The Blue Horizon Central Credit Union Serving Times Grand
+                  The Finova Bright Central Credit Union Serving Times Grand
                   Rapids, Kalamazoo, Michigan Georgia Islands
                 </p>
               </div>
@@ -715,8 +709,8 @@ const Page = () => {
               </div>
             </div>
             <p className="text-xs opacity-75">
-              © 2024 Blue Horizon Finance. All rights reserved. Member FDIC.
-              Equal Housing Lender.
+              © 2024 Finova Bright Bank. All rights reserved. Member FDIC. Equal
+              Housing Lender.
             </p>
           </div>
         </div>

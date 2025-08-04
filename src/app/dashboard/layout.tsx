@@ -15,7 +15,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <div>
       <header className="flex justify-between h-16 shrink-0 items-center gap-2 px-4 sticky top-0 z-10 bg-blue-900">
         <div className="flex items-center gap-2">
-          <h1 className="text-2xl font-bold tracking-tight">RTXB</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Finova Bright Bank</h1>
           <Separator
             orientation="vertical"
             className="mr-2 data-[orientation=vertical]:h-4"

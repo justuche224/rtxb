@@ -64,14 +64,16 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="overflow-hidden p-0">
+      <Card className="overflow-hidden p-0 shadow-xl border-0 backdrop-blur-sm bg-white/80 dark:bg-slate-800/80">
         <CardContent className="grid p-0 md:grid-cols-2">
           <form className="p-6 md:p-8" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-2xl font-bold">Welcome back</h1>
-                <p className="text-muted-foreground text-balance">
-                  Login to your Acme Inc account
+                <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-100">
+                  Welcome back
+                </h1>
+                <p className="text-slate-600 dark:text-slate-400 text-balance">
+                  Access your secure banking portal
                 </p>
               </div>
               <div className="grid gap-3">
@@ -102,7 +104,11 @@ export function LoginForm({
                   </p>
                 )}
               </div>
-              <Button type="submit" className="w-full" disabled={isLoading}>
+              <Button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-2.5 shadow-lg"
+                disabled={isLoading}
+              >
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
               <div className="text-center text-sm">

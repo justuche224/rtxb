@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Blue Horizon - Digital Banking",
+  title: "Finova Bright - Digital Banking",
   description: "Your trusted financial partner for modern banking solutions",
 };
 

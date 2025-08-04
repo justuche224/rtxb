@@ -40,7 +40,7 @@ export function AccountInfo({ accountNumber, userName }: AccountInfoProps) {
 
   const handleShareInfo = async () => {
     const shareData = {
-      title: "Blue Horizon Bank Account",
+      title: "Finova Bright Bank Account",
       text: `Send money to ${userName}\nAccount: ${accountNumber}`,
     };
 
