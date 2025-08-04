@@ -1,9 +1,9 @@
-import { ModeToggle } from "@/components/mode-toggle";
+// import { ModeToggle } from "@/components/mode-toggle";
 import {
   Breadcrumb,
   BreadcrumbList,
   BreadcrumbItem,
-  BreadcrumbPage,
+  // BreadcrumbPage,
   BreadcrumbLink,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
@@ -13,7 +13,7 @@ import UserMenu from "@/components/user-menu";
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <header className="flex justify-between h-16 shrink-0 items-center gap-2 px-4 sticky top-0 z-10 bg-background/50 backdrop-blur-sm">
+      <header className="flex justify-between h-16 shrink-0 items-center gap-2 px-4 sticky top-0 z-10 bg-blue-900">
         <div className="flex items-center gap-2">
           <h1 className="text-2xl font-bold tracking-tight">RTXB</h1>
           <Separator
@@ -26,9 +26,9 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />
-              <BreadcrumbItem>
+              {/* <BreadcrumbItem>
                 <BreadcrumbPage>Overview</BreadcrumbPage>
-              </BreadcrumbItem>
+              </BreadcrumbItem> */}
             </BreadcrumbList>
           </Breadcrumb>
         </div>
@@ -38,7 +38,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             className="mr-2 data-[orientation=vertical]:h-4"
           />
           <UserMenu />
-          <ModeToggle />
+          {/* <ModeToggle /> */}
         </div>
       </header>
       {children}

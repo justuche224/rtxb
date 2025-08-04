@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -126,117 +125,76 @@ const MobileTransactionCard = ({
   onAction: (action: string, transaction: Transaction) => void;
 }) => {
   return (
-    <Card className="mb-4">
-      <CardContent className="p-4">
-        <div className="flex items-start justify-between mb-3">
-          <div className="flex items-center gap-2">
-            {getTransactionIcon(transaction.type)}
-            <div>
-              <div className="font-medium text-sm">
-                {getTransactionTypeLabel(transaction.type)}
-              </div>
-              <div className="text-xs text-muted-foreground">
-                {formatDate(transaction.createdAt)}
-              </div>
-            </div>
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => onAction("print-receipt", transaction)}
-              >
-                <Printer className="mr-2 h-4 w-4" />
-                Print Receipt
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={() => onAction("view-details", transaction)}
-              >
-                <Eye className="mr-2 h-4 w-4" />
-                View Details
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={() => onAction("copy-transaction-id", transaction)}
-              >
-                <Copy className="mr-2 h-4 w-4" />
-                Copy Transaction ID
-              </DropdownMenuItem>
-              {transaction.reference && (
-                <DropdownMenuItem
-                  onClick={() => onAction("copy-reference", transaction)}
-                >
-                  <Copy className="mr-2 h-4 w-4" />
-                  Copy Reference
-                </DropdownMenuItem>
-              )}
-            </DropdownMenuContent>
-          </DropdownMenu>
+    <div className="flex items-center justify-between p-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors">
+      <div className="flex items-center gap-3 flex-1">
+        <div className="flex-shrink-0">
+          {getTransactionIcon(transaction.type)}
         </div>
+        <div className="flex-1 min-w-0">
+          <div className="font-medium text-sm text-gray-900">
+            {getTransactionTypeLabel(transaction.type)}
+          </div>
+          <div className="text-xs text-gray-500">
+            {formatDate(transaction.createdAt)}
+          </div>
+        </div>
+      </div>
 
-        <div className="space-y-2">
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">Amount</span>
-            <span
-              className={`font-mono font-bold text-lg ${
-                transaction.type === "transfer_in" ||
-                transaction.type === "received" ||
-                transaction.type === "deposit"
-                  ? "text-green-600"
-                  : "text-red-600"
-              }`}
-            >
-              {transaction.type === "transfer_in" ||
+      <div className="flex items-center gap-3">
+        <div className="text-right">
+          <div
+            className={`font-mono font-semibold text-sm ${
+              transaction.type === "transfer_in" ||
               transaction.type === "received" ||
               transaction.type === "deposit"
-                ? "+"
-                : "-"}
-              {formatCurrency(transaction.amount, transaction.currency)}
-            </span>
+                ? "text-green-600"
+                : "text-red-600"
+            }`}
+          >
+            {transaction.type === "transfer_in" ||
+            transaction.type === "received" ||
+            transaction.type === "deposit"
+              ? "+"
+              : "-"}
+            {formatCurrency(transaction.amount, transaction.currency)}
           </div>
-
-          <div className="flex justify-between items-center">
-            <span className="text-sm text-muted-foreground">Status</span>
-            <Badge variant={getStatusVariant(transaction.status)}>
-              {transaction.status}
-            </Badge>
-          </div>
-
-          {transaction.description && (
-            <div className="flex justify-between items-start">
-              <span className="text-sm text-muted-foreground">Description</span>
-              <span className="text-sm text-right max-w-[60%]">
-                {transaction.description}
-              </span>
-            </div>
-          )}
-
-          {transaction.senderName && (
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">From</span>
-              <span className="text-sm font-medium">
-                {transaction.senderName}
-              </span>
-            </div>
-          )}
-
-          {transaction.reference && (
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Reference</span>
-              <span className="text-xs font-mono text-right max-w-[60%] truncate">
-                {transaction.reference}
-              </span>
-            </div>
-          )}
+          <Badge
+            variant={getStatusVariant(transaction.status)}
+            className="text-xs mt-1"
+          >
+            {transaction.status}
+          </Badge>
         </div>
-      </CardContent>
-    </Card>
+
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-8 w-8 p-0 flex-shrink-0"
+            >
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem
+              onClick={() => onAction("view-details", transaction)}
+            >
+              <Eye className="mr-2 h-4 w-4" />
+              View Details
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onClick={() => onAction("print-receipt", transaction)}
+            >
+              <Printer className="mr-2 h-4 w-4" />
+              Print Receipt
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </div>
   );
 };
 
@@ -521,163 +479,148 @@ export function TransactionsTable() {
 
   if (loading) {
     return (
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent Transactions</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex justify-center items-center h-32">
-            <Loader className="animate-spin" />
-          </div>
-        </CardContent>
-      </Card>
+      <div className="flex justify-center items-center h-32">
+        <Loader className="animate-spin" />
+      </div>
     );
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Recent Transactions</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {transactions.length === 0 ? (
-          <div className="text-center py-8 text-muted-foreground">
-            No transactions found
-          </div>
-        ) : isMobile ? (
-          <div className="space-y-0">
-            {transactions.map((transaction) => (
-              <MobileTransactionCard
-                key={transaction.id}
-                transaction={transaction}
-                onAction={handleAction}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="rounded-md border">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Type</TableHead>
-                  <TableHead>Description</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Reference</TableHead>
-                  <TableHead className="w-[100px]">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {transactions.map((transaction) => (
-                  <TableRow key={transaction.id}>
-                    <TableCell>
-                      <div className="flex items-center gap-2">
-                        {getTransactionIcon(transaction.type)}
-                        <span className="font-medium">
-                          {getTransactionTypeLabel(transaction.type)}
-                        </span>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <div>
-                        {transaction.description || "No description"}
-                        {transaction.senderName && (
-                          <div className="text-sm text-muted-foreground">
-                            From: {transaction.senderName}
-                          </div>
-                        )}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <span
-                        className={`font-mono ${
-                          transaction.type === "transfer_in" ||
-                          transaction.type === "received" ||
-                          transaction.type === "deposit"
-                            ? "text-green-600"
-                            : "text-red-600"
-                        }`}
-                      >
-                        {transaction.type === "transfer_in" ||
+    <>
+      {transactions.length === 0 ? (
+        <div className="text-center py-8 text-muted-foreground">
+          No transactions found
+        </div>
+      ) : isMobile ? (
+        <div className="bg-white rounded-lg border border-gray-200 divide-y divide-gray-100">
+          {transactions.map((transaction) => (
+            <MobileTransactionCard
+              key={transaction.id}
+              transaction={transaction}
+              onAction={handleAction}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="rounded-md border">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Type</TableHead>
+                <TableHead>Description</TableHead>
+                <TableHead>Amount</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Reference</TableHead>
+                <TableHead className="w-[100px]">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {transactions.map((transaction) => (
+                <TableRow key={transaction.id}>
+                  <TableCell>
+                    <div className="flex items-center gap-2">
+                      {getTransactionIcon(transaction.type)}
+                      <span className="font-medium">
+                        {getTransactionTypeLabel(transaction.type)}
+                      </span>
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <div>
+                      {transaction.description || "No description"}
+                      {transaction.senderName && (
+                        <div className="text-sm text-muted-foreground">
+                          From: {transaction.senderName}
+                        </div>
+                      )}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <span
+                      className={`font-mono ${
+                        transaction.type === "transfer_in" ||
                         transaction.type === "received" ||
                         transaction.type === "deposit"
-                          ? "+"
-                          : "-"}
-                        {formatCurrency(
-                          transaction.amount,
-                          transaction.currency
-                        )}
-                      </span>
-                    </TableCell>
-                    <TableCell>
-                      <Badge variant={getStatusVariant(transaction.status)}>
-                        {transaction.status}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-sm text-muted-foreground">
-                      {formatDate(transaction.createdAt)}
-                    </TableCell>
-                    <TableCell className="font-mono text-sm">
-                      {transaction.reference || "-"}
-                    </TableCell>
-                    <TableCell>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                          <DropdownMenuItem
-                            onClick={() =>
-                              handleAction("print-receipt", transaction)
-                            }
-                          >
-                            <Printer className="mr-2 h-4 w-4" />
-                            Print Receipt
-                          </DropdownMenuItem>
+                          ? "text-green-600"
+                          : "text-red-600"
+                      }`}
+                    >
+                      {transaction.type === "transfer_in" ||
+                      transaction.type === "received" ||
+                      transaction.type === "deposit"
+                        ? "+"
+                        : "-"}
+                      {formatCurrency(transaction.amount, transaction.currency)}
+                    </span>
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant={getStatusVariant(transaction.status)}>
+                      {transaction.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-sm text-muted-foreground">
+                    {formatDate(transaction.createdAt)}
+                  </TableCell>
+                  <TableCell className="font-mono text-sm">
+                    {transaction.reference || "-"}
+                  </TableCell>
+                  <TableCell>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="h-8 w-8 p-0">
+                          <span className="sr-only">Open menu</span>
+                          <MoreHorizontal className="h-4 w-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem
+                          onClick={() =>
+                            handleAction("print-receipt", transaction)
+                          }
+                        >
+                          <Printer className="mr-2 h-4 w-4" />
+                          Print Receipt
+                        </DropdownMenuItem>
 
-                          <DropdownMenuSeparator />
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem
+                          onClick={() =>
+                            handleAction("view-details", transaction)
+                          }
+                        >
+                          <Eye className="mr-2 h-4 w-4" />
+                          View Details
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem
+                          onClick={() =>
+                            handleAction("copy-transaction-id", transaction)
+                          }
+                        >
+                          <Copy className="mr-2 h-4 w-4" />
+                          Copy Transaction ID
+                        </DropdownMenuItem>
+                        {transaction.reference && (
                           <DropdownMenuItem
                             onClick={() =>
-                              handleAction("view-details", transaction)
-                            }
-                          >
-                            <Eye className="mr-2 h-4 w-4" />
-                            View Details
-                          </DropdownMenuItem>
-                          <DropdownMenuSeparator />
-                          <DropdownMenuItem
-                            onClick={() =>
-                              handleAction("copy-transaction-id", transaction)
+                              handleAction("copy-reference", transaction)
                             }
                           >
                             <Copy className="mr-2 h-4 w-4" />
-                            Copy Transaction ID
+                            Copy Reference
                           </DropdownMenuItem>
-                          {transaction.reference && (
-                            <DropdownMenuItem
-                              onClick={() =>
-                                handleAction("copy-reference", transaction)
-                              }
-                            >
-                              <Copy className="mr-2 h-4 w-4" />
-                              Copy Reference
-                            </DropdownMenuItem>
-                          )}
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        )}
-      </CardContent>
+                        )}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      )}
 
       <Dialog open={detailsDialogOpen} onOpenChange={setDetailsDialogOpen}>
         <DialogContent className="sm:max-w-[600px]">
@@ -813,6 +756,6 @@ export function TransactionsTable() {
           )}
         </DialogContent>
       </Dialog>
-    </Card>
+    </>
   );
 }

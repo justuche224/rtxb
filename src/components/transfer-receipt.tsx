@@ -1,12 +1,5 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Download, Printer } from "lucide-react";
 
@@ -54,88 +47,102 @@ Status: Success
   };
 
   return (
-    <div className="fixed h-screen w-full top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-background z-50">
-      <Card className="w-full max-w-lg mx-auto shadow-lg bg-background">
-        <CardHeader className="text-center bg-green-50 dark:bg-green-950/20">
-          <div className="flex justify-center mb-4">
-            <CheckCircle className="h-16 w-16 text-green-500" />
+    <div className="w-full">
+      <div className="text-center mb-8">
+        <div className="flex justify-center mb-4">
+          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center">
+            <CheckCircle className="h-12 w-12 text-green-600" />
           </div>
-          <CardTitle className="text-green-600 text-2xl">
-            Transfer Successful!
-          </CardTitle>
-          <CardDescription className="text-green-700 dark:text-green-300">
-            Your money has been sent successfully
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="space-y-4">
-            <div className="flex justify-between items-center py-2 border-b border-border/50">
-              <span className="text-muted-foreground font-medium">
-                Reference:
-              </span>
-              <span className="font-mono text-sm text-right max-w-[180px] break-all">
+        </div>
+        <h2 className="text-3xl font-bold text-green-600 mb-2">
+          Transfer Successful!
+        </h2>
+        <p className="text-gray-600 text-lg">
+          Your money has been sent successfully
+        </p>
+      </div>
+
+      <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+        <div className="text-center">
+          <p className="text-sm text-green-700 mb-1">Amount Transferred</p>
+          <p className="text-4xl font-bold text-green-600">
+            ${receipt.amount.toFixed(2)}
+          </p>
+        </div>
+      </div>
+
+      <div className="space-y-4 mb-8">
+        <div className="bg-gray-50 rounded-lg p-4 space-y-4">
+          <h3 className="font-semibold text-gray-900 text-lg border-b border-gray-200 pb-2">
+            Transaction Details
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <p className="text-sm text-gray-600 mb-1">Reference Number</p>
+              <p className="font-mono text-sm bg-white p-2 rounded border">
                 {receipt.reference}
-              </span>
+              </p>
             </div>
-            <div className="flex justify-between items-center py-2 border-b border-border/50">
-              <span className="text-muted-foreground font-medium">Amount:</span>
-              <span className="font-semibold text-lg text-green-600">
-                ${receipt.amount.toFixed(2)}
-              </span>
-            </div>
-            <div className="flex justify-between items-center py-2 border-b border-border/50">
-              <span className="text-muted-foreground font-medium">
-                Recipient:
-              </span>
-              <span className="font-semibold text-right">
-                {receipt.recipientName}
-              </span>
-            </div>
-            <div className="flex justify-between items-center py-2 border-b border-border/50">
-              <span className="text-muted-foreground font-medium">
-                Account Number:
-              </span>
-              <span className="font-mono text-sm text-right">
-                {receipt.recipientAccountNumber}
-              </span>
-            </div>
-            <div className="flex justify-between items-center py-2 border-b border-border/50">
-              <span className="text-muted-foreground font-medium">
-                Description:
-              </span>
-              <span className="text-sm text-right max-w-[180px] break-words">
-                {receipt.description}
-              </span>
-            </div>
-            <div className="flex justify-between items-center py-2">
-              <span className="text-muted-foreground font-medium">Date:</span>
-              <span className="text-sm text-right">
-                {receipt.timestamp.toLocaleDateString()}
-                <br />
+
+            <div>
+              <p className="text-sm text-gray-600 mb-1">Transaction Date</p>
+              <p className="font-medium text-gray-900">
+                {receipt.timestamp.toLocaleDateString()} at{" "}
                 {receipt.timestamp.toLocaleTimeString()}
-              </span>
+              </p>
             </div>
           </div>
 
-          <div className="border-t pt-4 space-y-3">
-            <div className="flex space-x-3">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handlePrint}
-                className="flex-1"
-              >
-                <Printer className="h-4 w-4 mr-2" />
-                Print
-              </Button>
+          <div className="border-t border-gray-200 pt-4 space-y-3">
+            <div>
+              <p className="text-sm text-gray-600 mb-1">Recipient</p>
+              <p className="font-semibold text-gray-900 text-lg">
+                {receipt.recipientName}
+              </p>
             </div>
 
-            <Button onClick={onClose} className="w-full" size="lg">
-              Done
-            </Button>
+            <div>
+              <p className="text-sm text-gray-600 mb-1">Account Number</p>
+              <p className="font-mono text-sm text-gray-900">
+                {receipt.recipientAccountNumber}
+              </p>
+            </div>
+
+            {receipt.description && (
+              <div>
+                <p className="text-sm text-gray-600 mb-1">Description</p>
+                <p className="text-gray-900">{receipt.description}</p>
+              </div>
+            )}
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-3">
+        <Button variant="outline" onClick={handlePrint} className="flex-1 h-12">
+          <Printer className="h-4 w-4 mr-2" />
+          Print Receipt
+        </Button>
+
+        <Button
+          variant="outline"
+          onClick={handleDownload}
+          className="flex-1 h-12"
+        >
+          <Download className="h-4 w-4 mr-2" />
+          Download
+        </Button>
+      </div>
+
+      <div className="mt-6">
+        <Button
+          onClick={onClose}
+          className="w-full h-12 text-base font-medium bg-blue-600 hover:bg-blue-700"
+        >
+          Back to Dashboard
+        </Button>
+      </div>
     </div>
   );
 }
