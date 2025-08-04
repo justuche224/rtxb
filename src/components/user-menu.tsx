@@ -47,7 +47,7 @@ export default function UserMenu() {
           <Link href="/dashboard/settings">Settings</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/dashboard/sell?page=add">Sell</Link>
+          <Link href="/dashboard/send">Transfer</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
