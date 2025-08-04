@@ -14,7 +14,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import UserMenu from "@/components/user-menu";
-import { ModeToggle } from "@/components/mode-toggle";
+// import { ModeToggle } from "@/components/mode-toggle";
 
 export default function AdminLayout({
   children,
@@ -58,7 +58,7 @@ export default function AdminLayout({
               className="mr-2 data-[orientation=vertical]:h-4"
             />
             <UserMenu />
-            <ModeToggle />
+            {/* <ModeToggle /> */}
           </div>
         </header>
         <section>{children}</section>
