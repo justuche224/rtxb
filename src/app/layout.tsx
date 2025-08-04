@@ -36,7 +36,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <NextTopLoader />
+          <NextTopLoader color="blue" />
           {children}
           <Toaster richColors position="top-center" />
         </ThemeProvider>
