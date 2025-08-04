@@ -114,16 +114,16 @@ export function ServicesGrid() {
     <>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8">
         <ServiceButton
-          href="/dashboard/wire-transfer"
+          href="/dashboard/send"
           icon={Globe}
           title="Wire Transfer"
-          onLoading={handleServiceClick}
+          // onLoading={handleServiceClick}
         />
         <ServiceButton
-          href="/dashboard/local-transfer"
+          href="/dashboard/send"
           icon={ArrowUpDown}
           title="Local Transfer"
-          onLoading={handleServiceClick}
+          // onLoading={handleServiceClick}
         />
         <ServiceButton
           href="/dashboard/send"
@@ -181,25 +181,25 @@ export function ServicesGrid() {
         <ServiceButton
           href="/dashboard/alerts"
           icon={Mail}
-          title="Blue Alerts"
+          title="Finova Alerts"
           onLoading={handleServiceClick}
         />
         <ServiceButton
           href="/dashboard/loans"
           icon={DollarSign}
-          title="Blue Loans"
+          title="Finova Loans"
           onLoading={handleServiceClick}
         />
         <ServiceButton
           href="/dashboard/investments"
           icon={TrendingUp}
-          title="Blue Investments"
+          title="Finova Investments"
           onLoading={handleServiceClick}
         />
         <ServiceButton
           href="/dashboard/support"
           icon={MessageSquare}
-          title="Blue Support"
+          title="Finova Support"
           onLoading={handleServiceClick}
         />
       </div>
