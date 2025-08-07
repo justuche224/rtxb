@@ -27,7 +27,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </header>
 
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 max-md:pb-20">{children}</main>
     </div>
   );
 };
