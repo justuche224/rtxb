@@ -10,8 +10,16 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { CreditCard, Eye, EyeOff, Copy, Settings, Lock } from "lucide-react";
+import {  CreditCard,
+  Eye,
+  EyeOff,
+  Copy,
+  Settings,
+  Lock,
+  Plus,
+} from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 interface CardPageProps {
   user: {
@@ -48,13 +56,24 @@ const CardPage = ({ user }: CardPageProps) => {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 py-8">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-              My Card
-            </h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              Manage your card and view details
-            </p>
+
+          <div className="flex justify-between">
+            <div className="text-left mb-8">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                My Card
+              </h1>
+              <p className="text-gray-600 dark:text-gray-400 hidden lg:block">
+                Manage your card and view details
+              </p>
+            </div>
+            <div className="flex justify-end">
+              <Button asChild variant="outline" size="sm">
+                <Link href="/dashboard/card/request">
+                  <Plus className="w-4 h-4" />
+                  Add Card
+                </Link>
+              </Button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
