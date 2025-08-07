@@ -6,7 +6,7 @@ import { DashboardNav } from "@/components/dashboard-nav";
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="flex justify-between h-16 shrink-0 items-center gap-2 px-4 sticky top-0 z-10 bg-blue-900 dark:bg-blue-950 border-b border-blue-800 dark:border-blue-900">
+      <header className="flex justify-between h-16 shrink-0 items-center gap-2 px-4 sticky top-0 z-50 bg-blue-900 dark:bg-blue-950 border-b border-blue-800 dark:border-blue-900">
         <div className="flex items-center gap-2">
           <h1 className="text-md lg:text-2xl font-bold tracking-tight text-white">
             Finova Bright <span className="hidden lg:inline">Bank</span>
