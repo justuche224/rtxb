@@ -1,4 +1,4 @@
-// import { ModeToggle } from "@/components/mode-toggle";
+import { ModeToggle } from "@/components/mode-toggle";
 import {
   Breadcrumb,
   BreadcrumbList,
@@ -38,7 +38,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             className="mr-2 data-[orientation=vertical]:h-4"
           />
           <UserMenu />
-          {/* <ModeToggle /> */}
+          <ModeToggle />
         </div>
       </header>
       {children}
