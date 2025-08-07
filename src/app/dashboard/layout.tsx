@@ -1,54 +1,33 @@
 import { ModeToggle } from "@/components/mode-toggle";
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  // BreadcrumbPage,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import UserMenu from "@/components/user-menu";
+import { DashboardNav } from "@/components/dashboard-nav";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <header className="flex justify-between h-16 shrink-0 items-center gap-2 px-4 sticky top-0 z-10 bg-blue-900 dark:bg-blue-950 border-b border-blue-800 dark:border-blue-900">
         <div className="flex items-center gap-2">
-          <h1 className="text-2xl font-bold tracking-tight text-white">
-            Finova Bright Bank
+          <h1 className="text-md lg:text-2xl font-bold tracking-tight text-white">
+            Finova Bright <span className="hidden lg:inline">Bank</span>
           </h1>
           <Separator
             orientation="vertical"
-            className="mr-2 data-[orientation=vertical]:h-4 bg-blue-700 dark:bg-blue-800"
+            className="mr-2 data-[orientation=vertical]:h-4 bg-blue-700 dark:bg-blue-800 hidden lg:block"
           />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink
-                  href="/dashboard"
-                  className="text-blue-200 hover:text-white"
-                >
-                  Dashboard
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block text-blue-300" />
-              {/* <BreadcrumbItem>
-                <BreadcrumbPage>Overview</BreadcrumbPage>
-              </BreadcrumbItem> */}
-            </BreadcrumbList>
-          </Breadcrumb>
+          <DashboardNav />
         </div>
         <div className="flex items-center gap-2">
           <Separator
             orientation="vertical"
-            className="mr-2 data-[orientation=vertical]:h-4 bg-blue-700 dark:bg-blue-800"
+            className="mr-2 data-[orientation=vertical]:h-4 bg-blue-700 dark:bg-blue-800 hidden lg:block"
           />
           <UserMenu />
           <ModeToggle />
         </div>
       </header>
-      {children}
+
+      <main className="flex-1">{children}</main>
     </div>
   );
 };
