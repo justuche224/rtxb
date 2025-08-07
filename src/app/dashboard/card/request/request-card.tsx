@@ -49,7 +49,7 @@ const cardTypes: CardType[] = [
       "Travel insurance",
       "Cashback rewards",
     ],
-    description: "Enhanced features for frequent users",    
+    description: "Enhanced features for frequent users",
     icon: <Zap className="w-6 h-6" />,
   },
   {
@@ -127,14 +127,14 @@ const RequestCard = ({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 py-8">
       <div className="container mx-auto px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
               Request Your Card
             </h1>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-400">
               Choose the perfect card for your financial needs
             </p>
           </div>
@@ -143,18 +143,22 @@ const RequestCard = ({
             {cardTypes.map((cardType) => (
               <Card
                 key={cardType.id}
-                className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
+                className={`cursor-pointer transition-all duration-300 hover:shadow-lg bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800 ${
                   selectedCard === cardType.id
-                    ? "ring-2 ring-blue-500 shadow-lg transform scale-105"
-                    : "hover:shadow-md"
+                    ? "ring-2 ring-blue-500 dark:ring-blue-400 shadow-lg transform scale-105"
+                    : "hover:shadow-md dark:hover:shadow-gray-900/50"
                 }`}
                 onClick={() => setSelectedCard(cardType.id)}
               >
                 <CardHeader className="pb-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                      {cardType.icon}
-                      <CardTitle className="text-lg">{cardType.name}</CardTitle>
+                      <div className="text-gray-900 dark:text-gray-100">
+                        {cardType.icon}
+                      </div>
+                      <CardTitle className="text-lg text-gray-900 dark:text-gray-100">
+                        {cardType.name}
+                      </CardTitle>
                     </div>
                     <Badge
                       variant={
@@ -164,7 +168,9 @@ const RequestCard = ({
                       {cardType.type.toUpperCase()}
                     </Badge>
                   </div>
-                  <CardDescription>{cardType.description}</CardDescription>
+                  <CardDescription className="text-gray-600 dark:text-gray-400">
+                    {cardType.description}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div
@@ -195,13 +201,13 @@ const RequestCard = ({
 
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-2xl font-bold text-gray-900">
+                      <span className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                         {cardType.price === 0
                           ? "FREE"
                           : formatCurrency(cardType.price)}
                       </span>
                       {cardType.price > 0 && (
-                        <span className="text-sm text-gray-500">
+                        <span className="text-sm text-gray-500 dark:text-gray-400">
                           one-time fee
                         </span>
                       )}
@@ -211,7 +217,7 @@ const RequestCard = ({
                       {cardType.features.map((feature, index) => (
                         <li
                           key={index}
-                          className="flex items-center text-sm text-gray-600"
+                          className="flex items-center text-sm text-gray-600 dark:text-gray-300"
                         >
                           <Check className="w-4 h-4 text-green-500 mr-2 flex-shrink-0" />
                           {feature}
@@ -240,10 +246,12 @@ const RequestCard = ({
           </div>
 
           {selectedCard && (
-            <Card className="max-w-2xl mx-auto">
+            <Card className="max-w-2xl mx-auto bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
               <CardHeader>
-                <CardTitle className="text-center">Card Preview</CardTitle>
-                <CardDescription className="text-center">
+                <CardTitle className="text-center text-gray-900 dark:text-gray-100">
+                  Card Preview
+                </CardTitle>
+                <CardDescription className="text-center text-gray-600 dark:text-gray-400">
                   Here&apos;s how your selected card will look
                 </CardDescription>
               </CardHeader>
@@ -257,7 +265,7 @@ const RequestCard = ({
                   return (
                     <div className="space-y-6">
                       <div
-                        className={`h-48 w-80 mx-auto rounded-xl bg-gradient-to-br ${selected.gradient} p-6 text-white relative overflow-hidden shadow-2xl`}
+                        className={`h-48 w-80 mx-auto rounded-xl bg-gradient-to-br ${selected.gradient} p-6 text-white relative overflow-hidden shadow-2xl dark:shadow-gray-900/50`}
                       >
                         <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
                         <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
@@ -298,12 +306,14 @@ const RequestCard = ({
                       </div>
 
                       <div className="text-center space-y-2">
-                        <div className="text-2xl font-bold">
+                        <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                           {selected.price === 0
                             ? "FREE"
                             : formatCurrency(selected.price)}
                         </div>
-                        <p className="text-gray-600">{selected.description}</p>
+                        <p className="text-gray-600 dark:text-gray-400">
+                          {selected.description}
+                        </p>
                         <Button
                           size="lg"
                           className="mt-4"

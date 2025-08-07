@@ -1,6 +1,5 @@
 "use client";
 
-
 import React from "react";
 import {
   Card,
@@ -46,18 +45,22 @@ const CardPage = ({ user }: CardPageProps) => {
   const cvv = "123";
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 py-8">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">My Card</h1>
-            <p className="text-gray-600">Manage your card and view details</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+              My Card
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400">
+              Manage your card and view details
+            </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div className="relative">
-                <div className="h-56 w-full max-w-sm mx-auto rounded-2xl bg-gradient-to-br from-blue-600 to-blue-900 p-6 text-white relative overflow-hidden shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                <div className="h-56 w-full max-w-sm mx-auto rounded-2xl bg-gradient-to-br from-blue-600 to-blue-900 dark:from-blue-700 dark:to-blue-950 p-6 text-white relative overflow-hidden shadow-2xl dark:shadow-gray-900/50 transform hover:scale-105 transition-transform duration-300">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
                   <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mb-12"></div>
                   <div className="absolute top-4 right-4 w-12 h-8 bg-white/20 rounded-md flex items-center justify-center">
@@ -114,7 +117,7 @@ const CardPage = ({ user }: CardPageProps) => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-white hover:bg-white/20"
+                    className="text-white hover:bg-white/20 dark:hover:bg-white/30"
                     onClick={() => setShowDetails(!showDetails)}
                   >
                     {showDetails ? (
@@ -156,43 +159,47 @@ const CardPage = ({ user }: CardPageProps) => {
             </div>
 
             <div className="space-y-6">
-              <Card>
+              <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
+                  <CardTitle className="flex items-center gap-2 text-gray-900 dark:text-gray-100">
                     <CreditCard className="w-5 h-5" />
                     Card Details
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-gray-600 dark:text-gray-400">
                     Your card information and account details
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-gray-600">
+                      <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
                         Card Type
                       </label>
                       <div className="flex items-center gap-2 mt-1">
                         <Badge variant="default">DEBIT</Badge>
-                        <span className="text-sm text-gray-700">Premium</span>
+                        <span className="text-sm text-gray-700 dark:text-gray-300">
+                          Premium
+                        </span>
                       </div>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-600">
+                      <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
                         Status
                       </label>
                       <div className="flex items-center gap-2 mt-1">
                         <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                        <span className="text-sm text-gray-700">Active</span>
+                        <span className="text-sm text-gray-700 dark:text-gray-300">
+                          Active
+                        </span>
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-sm font-medium text-gray-600">
+                    <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
                       Card Number
                     </label>
-                    <div className="font-mono text-sm text-gray-900 mt-1">
+                    <div className="font-mono text-sm text-gray-900 dark:text-gray-100 mt-1">
                       {showDetails
                         ? cardNumber
                         : "**** **** **** " + user.accountNumber.slice(-4)}
@@ -201,38 +208,40 @@ const CardPage = ({ user }: CardPageProps) => {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="text-sm font-medium text-gray-600">
+                      <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
                         Expiry Date
                       </label>
-                      <div className="font-mono text-sm text-gray-900 mt-1">
+                      <div className="font-mono text-sm text-gray-900 dark:text-gray-100 mt-1">
                         {showDetails ? expiryDate : "**/**"}
                       </div>
                     </div>
                     <div>
-                      <label className="text-sm font-medium text-gray-600">
+                      <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
                         CVV
                       </label>
-                      <div className="font-mono text-sm text-gray-900 mt-1">
+                      <div className="font-mono text-sm text-gray-900 dark:text-gray-100 mt-1">
                         {showDetails ? cvv : "***"}
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-sm font-medium text-gray-600">
+                    <label className="text-sm font-medium text-gray-600 dark:text-gray-300">
                       Available Balance
                     </label>
-                    <div className="text-2xl font-bold text-gray-900 mt-1">
+                    <div className="text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1">
                       {formatCurrency(user.balanceAmount)}
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800">
                 <CardHeader>
-                  <CardTitle>Quick Actions</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="text-gray-900 dark:text-gray-100">
+                    Quick Actions
+                  </CardTitle>
+                  <CardDescription className="text-gray-600 dark:text-gray-400">
                     Manage your card settings and preferences
                   </CardDescription>
                 </CardHeader>

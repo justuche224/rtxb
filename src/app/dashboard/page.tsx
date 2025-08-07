@@ -25,8 +25,8 @@ const page = async () => {
   const accountInfo = await getUserAccountInfo();
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 dark:from-blue-950 dark:via-blue-900 dark:to-blue-950 text-white">
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-2xl mx-auto lg:max-w-4xl">
             <div className="text-center mb-6">
@@ -53,8 +53,8 @@ const page = async () => {
         <div className="max-w-6xl mx-auto">
           <ServicesGrid />
 
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 p-6">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4">
               Recent Transactions
             </h2>
             <TransactionsTable />

@@ -66,12 +66,12 @@ export function AccountInfo({ accountNumber, userName }: AccountInfoProps) {
   };
 
   return (
-    <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-6">
+    <div className="bg-white/10 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-6 mb-6 border border-white/20 dark:border-white/10">
       <div className="text-center mb-4">
-        <h2 className="text-sm font-medium text-blue-200 mb-2">
+        <h2 className="text-sm font-medium text-blue-200 dark:text-blue-300 mb-2">
           ACCOUNT NUMBER
         </h2>
-        <div className="text-xl font-mono mb-3">
+        <div className="text-xl font-mono mb-3 text-white">
           {formatAccountNumber(accountNumber, showFullNumber)}
         </div>
 
@@ -80,7 +80,7 @@ export function AccountInfo({ accountNumber, userName }: AccountInfoProps) {
             variant="ghost"
             size="sm"
             onClick={toggleAccountVisibility}
-            className="text-blue-200 hover:text-white hover:bg-white/20 h-8 px-3"
+            className="text-blue-200 dark:text-blue-300 hover:text-white hover:bg-white/20 dark:hover:bg-white/10 h-8 px-3"
           >
             {showFullNumber ? (
               <EyeOff className="h-4 w-4 mr-1" />
@@ -94,7 +94,7 @@ export function AccountInfo({ accountNumber, userName }: AccountInfoProps) {
             variant="ghost"
             size="sm"
             onClick={handleCopyAccountNumber}
-            className="text-blue-200 hover:text-white hover:bg-white/20 h-8 px-3"
+            className="text-blue-200 dark:text-blue-300 hover:text-white hover:bg-white/20 dark:hover:bg-white/10 h-8 px-3"
             disabled={!accountNumber}
           >
             {copied ? (
@@ -109,7 +109,7 @@ export function AccountInfo({ accountNumber, userName }: AccountInfoProps) {
             variant="ghost"
             size="sm"
             onClick={handleShareInfo}
-            className="text-blue-200 hover:text-white hover:bg-white/20 h-8 px-3"
+            className="text-blue-200 dark:text-blue-300 hover:text-white hover:bg-white/20 dark:hover:bg-white/10 h-8 px-3"
             disabled={!accountNumber}
           >
             <Share2 className="h-4 w-4 mr-1" />
@@ -120,18 +120,22 @@ export function AccountInfo({ accountNumber, userName }: AccountInfoProps) {
 
       <div className="grid grid-cols-2 gap-4 text-center">
         <div>
-          <h3 className="text-xs font-medium text-blue-200 mb-1">
+          <h3 className="text-xs font-medium text-blue-200 dark:text-blue-300 mb-1">
             TOTAL CREDIT
           </h3>
-          <h4 className="text-xs text-blue-300 mb-2">AUG. 2025</h4>
-          <div className="text-lg font-semibold">$0.00</div>
+          <h4 className="text-xs text-blue-300 dark:text-blue-400 mb-2">
+            AUG. 2025
+          </h4>
+          <div className="text-lg font-semibold text-white">$0.00</div>
         </div>
         <div>
-          <h3 className="text-xs font-medium text-blue-200 mb-1">
+          <h3 className="text-xs font-medium text-blue-200 dark:text-blue-300 mb-1">
             TOTAL DEBIT
           </h3>
-          <h4 className="text-xs text-blue-300 mb-2">AUG. 2025</h4>
-          <div className="text-lg font-semibold">$0.00</div>
+          <h4 className="text-xs text-blue-300 dark:text-blue-400 mb-2">
+            AUG. 2025
+          </h4>
+          <div className="text-lg font-semibold text-white">$0.00</div>
         </div>
       </div>
     </div>

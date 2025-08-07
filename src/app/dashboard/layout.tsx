@@ -13,19 +13,26 @@ import UserMenu from "@/components/user-menu";
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <header className="flex justify-between h-16 shrink-0 items-center gap-2 px-4 sticky top-0 z-10 bg-blue-900">
+      <header className="flex justify-between h-16 shrink-0 items-center gap-2 px-4 sticky top-0 z-10 bg-blue-900 dark:bg-blue-950 border-b border-blue-800 dark:border-blue-900">
         <div className="flex items-center gap-2">
-          <h1 className="text-2xl font-bold tracking-tight">Finova Bright Bank</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-white">
+            Finova Bright Bank
+          </h1>
           <Separator
             orientation="vertical"
-            className="mr-2 data-[orientation=vertical]:h-4"
+            className="mr-2 data-[orientation=vertical]:h-4 bg-blue-700 dark:bg-blue-800"
           />
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+                <BreadcrumbLink
+                  href="/dashboard"
+                  className="text-blue-200 hover:text-white"
+                >
+                  Dashboard
+                </BreadcrumbLink>
               </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block" />
+              <BreadcrumbSeparator className="hidden md:block text-blue-300" />
               {/* <BreadcrumbItem>
                 <BreadcrumbPage>Overview</BreadcrumbPage>
               </BreadcrumbItem> */}
@@ -35,7 +42,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="flex items-center gap-2">
           <Separator
             orientation="vertical"
-            className="mr-2 data-[orientation=vertical]:h-4"
+            className="mr-2 data-[orientation=vertical]:h-4 bg-blue-700 dark:bg-blue-800"
           />
           <UserMenu />
           <ModeToggle />

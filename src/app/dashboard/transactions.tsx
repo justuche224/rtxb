@@ -125,16 +125,16 @@ const MobileTransactionCard = ({
   onAction: (action: string, transaction: Transaction) => void;
 }) => {
   return (
-    <div className="flex items-center justify-between p-4 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors">
+    <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-800 last:border-b-0 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
       <div className="flex items-center gap-3 flex-1">
         <div className="flex-shrink-0">
           {getTransactionIcon(transaction.type)}
         </div>
         <div className="flex-1 min-w-0">
-          <div className="font-medium text-sm text-gray-900">
+          <div className="font-medium text-sm text-gray-900 dark:text-gray-100">
             {getTransactionTypeLabel(transaction.type)}
           </div>
-          <div className="text-xs text-gray-500">
+          <div className="text-xs text-gray-500 dark:text-gray-400">
             {formatDate(transaction.createdAt)}
           </div>
         </div>
@@ -492,7 +492,7 @@ export function TransactionsTable() {
           No transactions found
         </div>
       ) : isMobile ? (
-        <div className="bg-white rounded-lg border border-gray-200 divide-y divide-gray-100">
+        <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 divide-y divide-gray-100 dark:divide-gray-800">
           {transactions.map((transaction) => (
             <MobileTransactionCard
               key={transaction.id}
@@ -502,7 +502,7 @@ export function TransactionsTable() {
           ))}
         </div>
       ) : (
-        <div className="rounded-md border">
+        <div className="rounded-md border border-gray-200 dark:border-gray-800">
           <Table>
             <TableHeader>
               <TableRow>
@@ -526,11 +526,11 @@ export function TransactionsTable() {
                       </span>
                     </div>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="text-gray-900 dark:text-gray-100">
                     <div>
                       {transaction.description || "No description"}
                       {transaction.senderName && (
-                        <div className="text-sm text-muted-foreground">
+                        <div className="text-sm text-muted-foreground dark:text-gray-400">
                           From: {transaction.senderName}
                         </div>
                       )}
@@ -559,10 +559,10 @@ export function TransactionsTable() {
                       {transaction.status}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-sm text-muted-foreground">
+                  <TableCell className="text-sm text-muted-foreground dark:text-gray-400">
                     {formatDate(transaction.createdAt)}
                   </TableCell>
-                  <TableCell className="font-mono text-sm">
+                  <TableCell className="font-mono text-sm text-gray-900 dark:text-gray-100">
                     {transaction.reference || "-"}
                   </TableCell>
                   <TableCell>

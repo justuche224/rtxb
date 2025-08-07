@@ -38,16 +38,16 @@ const ServiceButton = ({
     return (
       <Link
         href={href}
-        className="flex flex-col items-center justify-center p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 hover:scale-105 group"
+        className="flex flex-col items-center justify-center p-4 bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md dark:hover:shadow-lg transition-all duration-200 hover:scale-105 group"
       >
-        <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-3 group-hover:bg-blue-700 transition-colors">
+        <div className="w-12 h-12 bg-blue-600 dark:bg-blue-700 rounded-xl flex items-center justify-center mb-3 group-hover:bg-blue-700 dark:group-hover:bg-blue-600 transition-colors">
           <Icon className="h-6 w-6 text-white" />
         </div>
-        <span className="text-sm font-medium text-gray-900 text-center">
+        <span className="text-sm font-medium text-gray-900 dark:text-gray-100 text-center">
           {title}
         </span>
         {description && (
-          <span className="text-xs text-gray-500 text-center mt-1">
+          <span className="text-xs text-gray-500 dark:text-gray-400 text-center mt-1">
             {description}
           </span>
         )}
@@ -58,16 +58,16 @@ const ServiceButton = ({
   return (
     <button
       onClick={onLoading}
-      className="flex flex-col items-center justify-center p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 hover:scale-105 group"
+      className="flex flex-col items-center justify-center p-4 bg-white dark:bg-gray-900 rounded-xl shadow-sm border border-gray-100 dark:border-gray-800 hover:shadow-md dark:hover:shadow-lg transition-all duration-200 hover:scale-105 group"
     >
-      <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-3 group-hover:bg-blue-700 transition-colors">
+      <div className="w-12 h-12 bg-blue-600 dark:bg-blue-700 rounded-xl flex items-center justify-center mb-3 group-hover:bg-blue-700 dark:group-hover:bg-blue-600 transition-colors">
         <Icon className="h-6 w-6 text-white" />
       </div>
-      <span className="text-sm font-medium text-gray-900 text-center">
+      <span className="text-sm font-medium text-gray-900 dark:text-gray-100 text-center">
         {title}
       </span>
       {description && (
-        <span className="text-xs text-gray-500 text-center mt-1">
+        <span className="text-xs text-gray-500 dark:text-gray-400 text-center mt-1">
           {description}
         </span>
       )}
@@ -78,15 +78,15 @@ const ServiceButton = ({
 const LoadingOverlay = ({ onCancel }: { onCancel: () => void }) => {
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
-      <div className="bg-white rounded-2xl p-8 shadow-2xl max-w-sm mx-4">
+      <div className="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-2xl max-w-sm mx-4 border border-gray-200 dark:border-gray-800">
         <div className="text-center">
           <div className="mb-4">
-            <Loader className="animate-spin h-12 w-12 text-blue-600 mx-auto" />
+            <Loader className="animate-spin h-12 w-12 text-blue-600 dark:text-blue-400 mx-auto" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
             Loading Service
           </h3>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 dark:text-gray-400 mb-6">
             Please wait while we prepare this feature for you...
           </p>
           <Button onClick={onCancel} variant="outline" className="w-full">
