@@ -19,6 +19,7 @@ import {
   Globe,
   Loader,
   X,
+  ArrowUp,
 } from "lucide-react";
 
 const ServiceButton = ({
@@ -34,7 +35,8 @@ const ServiceButton = ({
   description?: string;
   onLoading?: () => void;
 }) => {
-  if (href === "/dashboard/send") {
+  // If no onLoading function is provided, render as a Link
+  if (!onLoading) {
     return (
       <Link
         href={href}
@@ -55,6 +57,7 @@ const ServiceButton = ({
     );
   }
 
+  // If onLoading is provided, render as a button with loading functionality
   return (
     <button
       onClick={onLoading}
@@ -129,6 +132,18 @@ export function ServicesGrid() {
           href="/dashboard/send"
           icon={Send}
           title="Internal Transfer"
+        />
+        <ServiceButton
+          href="/dashboard/card"
+          icon={CreditCard}
+          title="Finova Cards"
+          // onLoading={handleServiceClick}
+        />
+        <ServiceButton
+          href="/dashboard/withdraw"
+          icon={ArrowUp}
+          title="Withdraw"
+          // onLoading={handleServiceClick}
         />
         <ServiceButton
           href="/dashboard/buy-crypto"
